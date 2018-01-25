@@ -1,0 +1,32 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+from time import sleep, time
+from argoid.config import Configuration
+import threading
+
+config = Configuration()
+
+
+# TODO, ability to configure board
+from argoid.interactions import beaglebone
+interaction_class = beaglebone.BeagleboneInteraction()
+
+
+while True:
+    current_time = round(time())
+
+    for interaction_name in config.config["interactions"]:
+        interaction = config.config["interactions"][interaction_name]
+        action_time = config.getActionTime(interaction_name)
+        if current_time >= action_time:
+            config.setTimestamp(interaction_name,action_time)
+            # execute configured interaction in a thread
+            method_attrs = [interaction_name]
+            method_attrs.extend(interaction["attributes"])
+            threading.Thread(target=getattr(interaction_class, interaction["method"]), args=method_attrs).start()
+
+
+
+    # TODO, make this configurable
+    sleep(1)

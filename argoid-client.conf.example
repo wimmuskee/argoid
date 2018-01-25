@@ -1,0 +1,13 @@
+{
+  "board": "beaglebone",
+  "interactions": {
+    "water_1": {
+      "attributes": [
+        "P9_12",
+        "/sys/devices/ocp.3/helper.10/AIN4"
+      ],
+      "recurring": 600,
+      "method": "GpioPollAdc"
+    }
+  }
+}
