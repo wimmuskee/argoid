@@ -23,7 +23,7 @@ class BeagleboneInteraction(Interaction):
 
         self.setRollingAverageValue(name,value)
         GPIO.output(gpio, GPIO.LOW)
-        self.logger.info(value)
+        self.logger.info(name + "," + str(value))
 
     def __setupGPIO(self,gpio,direction):
         try:
