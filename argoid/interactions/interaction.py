@@ -19,6 +19,16 @@ class Interaction:
 
         self.rolling_averages[name].append(value)
 
+    def checkRollingAverageBelowThreshold(self,name,threshold):
+        if len(self.rolling_averages[name]) < 10:
+            return False
+
+        average = sum(self.rolling_averages[name])/len(self.rolling_averages[name])
+        if average < threshold:
+            return True
+        else:
+            return False
+
 
     def __setLogger(self):
         handler = logging.handlers.SysLogHandler('/dev/log')
