@@ -5,7 +5,7 @@ from time import time
 
 class Configuration:
     def __init__(self):
-        with open("argoid-client.conf") as f:
+        with open("/etc/argoid/argoid-client.conf") as f:
             self.config = json.loads(f.read())
 
         # also validate
