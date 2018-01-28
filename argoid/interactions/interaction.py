@@ -13,7 +13,10 @@ class Interaction:
         if name not in self.rolling_averages:
             self.rolling_averages[name] = []
 
-        # TODO: limit number of averages
+        # limit number of averages
+        if len(self.rolling_averages[name]) == 10:
+            del(self.rolling_averages[name][0])
+
         self.rolling_averages[name].append(value)
 
 
