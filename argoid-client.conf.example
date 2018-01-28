@@ -8,6 +8,15 @@
       ],
       "recurring": 600,
       "method": "GpioPollAdc"
+    },
+    "water_1_threshold": {
+      "attributes": [
+        "water_1",
+        "P8_46",
+        700
+      ],
+      "recurring": 600,
+      "method": "GpioOnAverageBelowThreshold"
     }
   }
 }

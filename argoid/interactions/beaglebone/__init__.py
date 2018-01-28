@@ -25,6 +25,16 @@ class BeagleboneInteraction(Interaction):
         GPIO.output(gpio, GPIO.LOW)
         self.logger.info(name + "," + str(value))
 
+    def GpioOnAverageBelowThreshold(self,name,sensor_name,gpio,threshold):
+        """Check if rolling average for sensor_name is below
+        threshold, and engage provided gpio."""
+        self.__setupGPIO(gpio,GPIO.OUT)
+        if self.checkRollingAverageBelowThreshold(sensor_name,threshold):
+            GPIO.output(gpio, GPIO.HIGH)
+            self.logger.info(name + "," + str(threshold))
+        else:
+            GPIO.output(gpio, GPIO.LOW)
+
     def __setupGPIO(self,gpio,direction):
         try:
             GPIO.setup(gpio,direction)
