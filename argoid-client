@@ -9,8 +9,12 @@ config = Configuration()
 
 
 # TODO, ability to configure board
-from argoid.interactions import beaglebone
-interaction_class = beaglebone.BeagleboneInteraction()
+if config.config["board"] == "beaglebone":
+    from argoid.interactions import beaglebone
+    interaction_class = beaglebone.BeagleboneInteraction()
+else:
+    print("board not supported: " + config.config["board"])
+    exit()
 
 
 while True:
