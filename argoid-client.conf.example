@@ -7,6 +7,7 @@
         "/sys/devices/ocp.3/helper.10/AIN4"
       ],
       "recurring": 600,
+      "offset": 10,
       "method": "GpioPollAdc"
     },
     "water_1_threshold": {
@@ -16,6 +17,7 @@
         700
       ],
       "recurring": 600,
+      "offset": 15,
       "method": "GpioOnAverageBelowThreshold"
     }
   }
