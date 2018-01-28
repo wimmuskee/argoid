@@ -23,11 +23,17 @@ class Interaction:
         if len(self.rolling_averages[name]) < 10:
             return False
 
-        average = sum(self.rolling_averages[name])/len(self.rolling_averages[name])
+        average = self.getListAverage(self.rolling_averages[name])
         if average < threshold:
             return True
         else:
             return False
+
+    def getListAverage(self,lst):
+        if len(lst) == 0:
+            return 0
+        else:
+            return sum(lst)/len(lst) 
 
 
     def __setLogger(self):

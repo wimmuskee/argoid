@@ -54,5 +54,4 @@ class BeagleboneInteraction(Interaction):
         for i in range(1,10):
             with open(adc, "r") as f:
                 values.append(int(f.readline().strip()))
-        value = sum(values)/len(values)
-        return value
+        return self.getListAverage(values)
