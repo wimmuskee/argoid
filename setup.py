@@ -15,5 +15,6 @@ setup(
     keywords = "scheduling daemon",
     packages=find_packages(),
     scripts=["argoid-client"],
-    data_files=[("/etc/argoid", ["argoid-client.conf.example"])]
+    data_files=[("/etc/argoid", ["client/argoid-client.conf.example"]),
+        ("/usr/share/argoid", ["client/argoid-client-conf.schema"])]
 )

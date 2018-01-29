@@ -5,10 +5,12 @@ from time import sleep, time
 from argoid.config import Configuration
 import threading
 
-config = Configuration()
+try:
+    config = Configuration()
+except Exception as err:
+    print("Exception:", err)
+    exit()
 
-
-# TODO, ability to configure board
 if config.config["board"] == "beaglebone":
     from argoid.interactions import beaglebone
     interaction_class = beaglebone.BeagleboneInteraction()

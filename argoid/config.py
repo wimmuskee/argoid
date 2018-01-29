@@ -1,14 +1,28 @@
 # -*- coding: utf-8 -*-
 
+from os.path import isfile
 import json
+from jsonschema import validate
 from time import time
 
 class Configuration:
-    def __init__(self):
-        with open("/etc/argoid/argoid-client.conf") as f:
+    def __init__(self,
+        configpath="/etc/argoid/argoid-client.conf",
+        schemapath="/usr/share/argoid/argoid-client-conf.schema"):
+
+        if not isfile(configpath):
+            raise RuntimeError("cannot find client configuration at " + configpath)
+
+        with open(configpath) as f:
             self.config = json.loads(f.read())
 
-        # also validate
+        with open(schemapath) as f:
+            schema = json.loads(f.read())
+
+        try:
+            validate(self.config, schema)
+        except:
+            raise RuntimeError("error validating configuration against schema: " + schemapath)
 
         # set initial time for all interactions
         for interaction_name in self.config["interactions"]:

@@ -1,0 +1,36 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "argoid-client configuration",
+    "type": "object",
+    "properties": {
+        "board": {
+            "type": "string"
+        },
+        "interactions": {
+            "type": "object",
+            "patternProperties": {
+                "^[a-zA-Z0-9_]*$": {
+                    "type": "object",
+                    "properties": {
+                        "offset": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "recurring": {
+                            "type": "integer",
+                            "minimum": 5
+                        },
+                        "method": {
+                            "type": "string"
+                        },
+                        "attributes": {
+                            "type": "array"
+                        }
+                    },
+                    "required": ["offset", "recurring", "method", "attributes"]
+                }
+            }
+        }
+    },
+    "required": ["board", "interactions"]
+}
