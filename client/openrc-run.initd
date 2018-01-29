@@ -1,0 +1,19 @@
+#!/sbin/openrc-run
+
+depend() {
+    need net logger
+}
+
+start() {
+    ebegin "Starting argoid-client"
+    start-stop-daemon --start --exec /usr/bin/argoid-client \
+        --pidfile /var/run/argoid-client.pid --make-pidfile --background
+    eend $?
+}
+
+stop() {
+    ebegin "Stopping argoid-client"
+    start-stop-daemon --stop --exec /usr/bin/argoid-client \
+        --pidfile /var/run/argoid-client.pid
+    eend $?
+}
