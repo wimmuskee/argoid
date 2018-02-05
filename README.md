@@ -26,6 +26,9 @@ and reading input from */sys/devices/ocp.3/helper.10/AIN4*. Following the next c
 Each interaction is logged to the syslog for statistics gathering. The log contains the "argoid" programname, as
 well as the sensorname and a value (comma separated).
 
+# applications
+- [plant moisture checker](docs/PlantMoistureChecker.md)
+
 # requirements
 - Python2/3 with threading support
 - [jsonschema](https://github.com/Julian/jsonschema)

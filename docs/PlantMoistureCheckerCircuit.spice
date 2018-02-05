@@ -1,0 +1,9 @@
+plant moisture circuit
+v1 1 0 dc 3.3
+r1 1 2 10K
+rplant 2 3 180K
+r3 3 0 220K
+r4 2 0 10K
+.dc v1 3.3 3.3 1
+.print dc v(1,2) v(2,0) v(2,3) v(3,0)
+.end
