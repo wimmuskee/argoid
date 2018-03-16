@@ -11,9 +11,14 @@ outfile = args[3]
 data <- read.table(infile,header=FALSE, sep=",")
 colnames(data) <- c("timestamp_raw","host","application","interaction","value")
 data$timestamp = as.POSIXct(strptime(data$timestamp_raw, "%Y-%m-%dT%H:%M"))
+data$datestr = substr(as.character(data$timestamp),0,10)
+
+# select last 30 days
+last_dates <- tail(unique(data$datestr),30)
+taildata <- data[(data$datestr %in% last_dates),]
 
 # using first arg to match all interactions using that prefix
-plotdata = subset(data, grepl(glob2rx(paste(args[1],"*", sep='')), interaction), select=c("interaction","value","timestamp"))
+plotdata = subset(taildata, grepl(glob2rx(paste(args[1],"*", sep='')), interaction), select=c("interaction","value","timestamp"))
 
 # factor for color mapping
 plotdata$interaction_factor = factor(plotdata$interaction)
